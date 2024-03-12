@@ -120,7 +120,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/degrees"
         android:textColor="?attr/colorAppAccent"
-        android:textSize="@dimen/compass_degrees_text_size" />
+        android:textSize="@dimen/compass_distance_text_size" />
 
     <View
         android:id="@+id/direction_dim"

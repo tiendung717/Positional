@@ -3,7 +3,7 @@
     <!-- These strings are not to be translated and should be used as is -->
 
     <string name="licensing_key" translatable="false">@string/thisAppLicensingKey</string>
-    <string name="app_name" translatable="false">Positional</string>
+    <string name="app_name" translatable="false">Defender Pointer</string>
     <string name="moon_azimuth" translatable="false">@string/sun_azimuth</string>
     <string name="moon_distance" translatable="false">@string/sun_distance</string>
     <string name="moon_altitude" translatable="false">@string/sun_altitude</string>

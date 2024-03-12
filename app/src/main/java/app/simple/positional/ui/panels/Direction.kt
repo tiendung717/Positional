@@ -171,6 +171,7 @@ class Direction : ScopedFragment(), SensorEventListener {
                     targetLatLng!!.longitude).toFloat()
 
             displacement.text = HtmlHelper.fromHtml(targetDisplacement(LatLng(it.latitude, it.longitude), targetLatLng!!).toString())
+            directionDegrees.text = HtmlHelper.fromHtml(targetDisplacement(LatLng(it.latitude, it.longitude), targetLatLng!!, false).toString())
         }
 
         menu.setOnClickListener {
@@ -258,7 +259,6 @@ class Direction : ScopedFragment(), SensorEventListener {
         direction.rotationUpdate(directionAngle.minus(rotationAngle).normalizeEulerAngle(false), true)
 
         degrees.text = StringBuilder().append(abs(dial.rotation.normalizeEulerAngle(true).toInt())).append(degreeSymbol)
-        directionDegrees.text = StringBuilder().append(abs(direction.rotation.normalizeEulerAngle(false).toInt())).append(degreeSymbol)
         azimuth.text = HtmlHelper.fromHtml("<b>${getString(R.string.moon_azimuth)}</b> ${degrees.text}")
         bearing.text = HtmlHelper.fromHtml("<b>${getString(R.string.gps_bearing)}</b> ${directionDegrees.text}")
     }
@@ -408,9 +408,11 @@ class Direction : ScopedFragment(), SensorEventListener {
         }
     }
 
-    private fun targetDisplacement(target: LatLng, current: LatLng): StringBuilder {
+    private fun targetDisplacement(target: LatLng, current: LatLng, showLabel: Boolean = true): StringBuilder {
         return StringBuilder().also { stringBuilder ->
-            stringBuilder.append("<b>${getString(R.string.gps_displacement)} </b>")
+            if (showLabel) {
+                stringBuilder.append("<b>${getString(R.string.gps_displacement)} </b>")
+            }
 
             kotlin.runCatching {
                 val p0 = LocationExtension.measureDisplacement(arrayOf(target, current))
